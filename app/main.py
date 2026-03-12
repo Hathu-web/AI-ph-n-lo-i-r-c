@@ -36,3 +36,33 @@ def get_history():
     for item in history:
         item["_id"] = str(item["_id"]) # Chuyển ID của Mongo sang chuỗi để hiện thị
     return history
+@app.get("/stats")
+async def get_waste_stats():
+    """API Dashboard: Thống kê số lượng rác thải đã phân loại"""
+    try:
+        # 1. Sử dụng Aggregation để nhóm theo nhãn 'result' và đếm số lượng
+        pipeline = [
+            {"$group": {"_id": "$result", "count": {"$sum": 1}}}
+        ]
+        results = list(collection.aggregate(pipeline))
+        
+        # 2. Tính tổng số lượng tất cả các mẫu rác
+        total = sum(item['count'] for item in results)
+        
+        # 3. Định dạng lại dữ liệu trả về cho Dashboard
+        stats_detail = [
+            {
+                "label": item['_id'], 
+                "count": item['count'],
+                "percentage": f"{(item['count'] / total) * 100:.2f}%" if total > 0 else "0%"
+            } for item in results
+        ]
+        
+        return {
+            "total_classified": total,
+            "statistics": stats_detail,
+            "status": "Success"
+        }
+    except Exception as e:
+        print(f"Lỗi thống kê: {e}")
+        return {"status": "Error", "message": str(e)}
