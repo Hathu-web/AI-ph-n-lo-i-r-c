@@ -2,7 +2,5 @@ fastapi
 uvicorn
 pymongo
 python-multipart
-keras==2.10.0
 numpy==1.26.4
-h5py==3.10.0
 pillow
