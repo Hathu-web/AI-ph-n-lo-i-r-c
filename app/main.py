@@ -173,29 +173,40 @@ DASHBOARD_TEMPLATE = """
     ];
 
     // BAR CHART
-    new Chart(document.getElementById('barChart'), {
+    new Chart(document.getElementById('barChart'), {{
         type: 'bar',
-        data: {
+        data: {{
             labels: labels,
-            datasets: [{
+            datasets: [{{
                 label: 'Số lượng',
                 data: counts,
                 backgroundColor: colors
-            }]
-        }
-    });
+            }}]
+        }},
+        options: {{
+            responsive: true,
+            plugins: {{
+                legend: {{
+                    display: true
+                }}
+            }}
+        }}
+    }});
 
     // PIE CHART
-    new Chart(document.getElementById('pieChart'), {
+    new Chart(document.getElementById('pieChart'), {{
         type: 'pie',
-        data: {
+        data: {{
             labels: labels,
-            datasets: [{
+            datasets: [{{
                 data: counts,
                 backgroundColor: colors
-            }]
-        }
-    });
+            }}]
+        }},
+        options: {{
+            responsive: true
+        }}
+    }});
 </script>
 
 </body>
