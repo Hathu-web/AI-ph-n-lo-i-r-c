@@ -104,22 +104,22 @@ DASHBOARD_TEMPLATE = """
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-        body {
+        body {{
             background: #f4f7f6;
             font-family: 'Segoe UI', sans-serif;
-        }
-        .header {
+        }}
+        .header {{
             background: linear-gradient(135deg, #00c853, #009624);
             color: white;
             padding: 30px;
             text-align: center;
             border-radius: 0 0 25px 25px;
-        }
-        .card {
+        }}
+        .card {{
             border: none;
             border-radius: 20px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        }
+        }}
     </style>
 </head>
 

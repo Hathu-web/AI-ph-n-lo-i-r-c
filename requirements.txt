@@ -4,3 +4,4 @@ pymongo
 python-multipart
 numpy==1.26.4
 pillow
+tensorflow-cpu==2.13.0
